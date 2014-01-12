@@ -35,89 +35,12 @@ module Puppet
       "drop user #{self[:name]}"
     end
 
-    newparam(:name) do
-      include SimpleResource
-      include SimpleResource::Validators::Name
-      include SimpleResource::Mungers::Upcase
-
-      desc "The user name"
-
-      isnamevar
-
-      to_translate_to_resource do | raw_resource|
-        raw_resource['USERNAME'].upcase
-      end
-
-
-    end
-
-    newproperty(:user_id) do
-      include SimpleResource
-
-      include SimpleResource::Validators::Integer
-      include SimpleResource::Mungers::Integer
-
-      desc "The user id"
-
-      to_translate_to_resource do | raw_resource|
-        raw_resource['USER_ID'].to_i
-      end
-
-    end
-
-    newproperty(:password) do
-      include SimpleResource
-      include SimpleResource::Validators::Name
-
-      desc "The user's password"
-      defaultto 'password'
-
-      to_translate_to_resource do | raw_resource|
-        raw_resource['PASSWORD']
-      end
-
-      on_apply do
-        "identified by #{resource[:password]}"
-      end
-
-    end
-
-    newproperty(:default_tablespace) do
-      include SimpleResource
-      include SimpleResource::Validators::Name
-      include SimpleResource::Mungers::Upcase
-
-      desc "The user's default tablespace"
-      defaultto 'USERS'
-
-      to_translate_to_resource do | raw_resource|
-        raw_resource['DEFAULT_TABLESPACE'].upcase
-      end
-
-      on_apply do
-        "default tablespace #{resource[:default_tablespace]}"
-      end
-
-    end
-
-    newproperty(:temporary_tablespace) do
-      include SimpleResource
-      include SimpleResource::Validators::Name
-      include SimpleResource::Mungers::Upcase
-
-      desc "The user's temporary tablespace"
-      defaultto 'TEMP'
-
-      to_translate_to_resource do | raw_resource|
-        raw_resource['TEMPORARY_TABLESPACE'].upcase
-      end
-
-
-      on_apply do
-        "temporary tablespace #{resource[:temporary_tablespace]}"
-      end
-
-    end
+    parameter :name
+    property :user_id
+    property :password
+    property :default_tablespace
+    property :temporary_tablespace
+    property :grants
 
   end
 end
