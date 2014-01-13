@@ -24,23 +24,24 @@ module Puppet
     end
 
     on_create do
-      "create user #{self[:name]}"
+      "create user #{name}"
     end
 
     on_modify do
-      "alter user #{self[:name]}"
+      "alter user #{name}"
     end
 
     on_destroy do
-      "drop user #{self[:name]}"
+      "drop user #{name}"
     end
 
     parameter :name
-    property :user_id
-    property :password
-    property :default_tablespace
-    property :temporary_tablespace
-    property :grants
+    property  :user_id
+    property  :password
+    property  :default_tablespace
+    property  :temporary_tablespace
+    property  :grants
+    property  :quotas
 
   end
 end
