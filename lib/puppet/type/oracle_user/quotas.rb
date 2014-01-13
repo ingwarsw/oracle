@@ -6,8 +6,8 @@ newproperty(:quotas) do
 
   to_translate_to_resource do | raw_resource|
     username = raw_resource['USERNAME'].upcase
-    raw_quotas = sql "select * from dba_ts_quotas where username = '#{username}'"
-    translate(raw_quotas)
+    @raw_quotas ||= sql "select * from dba_ts_quotas"
+    quota_for(username)
   end
 
   def validate(value)
@@ -30,6 +30,10 @@ newproperty(:quotas) do
   end
 
   private
+
+  def self.quota_for(user)
+    translate(@raw_quotas.select{|q| q['USERNAME'] == user})
+  end
 
   def self.translate(raw)
     return_value = {}

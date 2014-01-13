@@ -1,4 +1,4 @@
-newproperty(:password) do
+newparam(:password) do
   include SimpleResource
 
   desc "The user's password"

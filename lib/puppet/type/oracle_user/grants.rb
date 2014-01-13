@@ -5,8 +5,9 @@ newproperty(:grants, :array_matching => :all) do
   desc "grants for this user"
 
   to_translate_to_resource do | raw_resource|
+    @all_rights ||= privileges + granted_roles
     user = raw_resource['USERNAME'].upcase
-    privileges(user) + granted_roles(user)
+    rights_for_user(user)
   end
 
   #
@@ -19,8 +20,8 @@ newproperty(:grants, :array_matching => :all) do
 
   def change_to_s(from, to)
     return_value = []
-    return_value << "revoked the #{revoked_rights} right(s)" unless revoked_rights.emtpy?
-    return_value << "granted the #{granted_rights} right(s)" unless granted_rights.empty?
+    return_value << "revoked the #{revoked_rights.join(',')} right(s)" unless revoked_rights.empty?
+    return_value << "granted the #{granted_rights.join(',')} right(s)" unless granted_rights.empty?
     return_value.join(' and ')
   end
 
@@ -57,12 +58,17 @@ newproperty(:grants, :array_matching => :all) do
       rights.empty? ? nil : "grant #{rights.join(',')} to #{provider.name}"
     end
 
-    def self.privileges(user)
-      (sql "select distinct privilege from dba_sys_privs where grantee = '#{user}'").collect{|u| u['PRIVILEGE']}
+    def self.rights_for_user(user)
+      @all_rights.select {|r| r['GRANTEE'] == user}.collect{|u| u['PRIVILEGE']}
     end
 
-    def self.granted_roles(user)
-      (sql "select distinct granted_role from dba_role_privs where grantee = '#{user}'").collect{|u| u['GRANTED_ROLE']}
+
+    def self.privileges
+      sql "select distinct grantee, privilege from dba_sys_privs"
+    end
+
+    def self.granted_roles
+      sql "select distinct grantee, granted_role as privilege from dba_role_privs"
     end
 
 end

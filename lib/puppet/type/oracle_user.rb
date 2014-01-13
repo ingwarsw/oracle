@@ -24,7 +24,11 @@ module Puppet
     end
 
     on_create do
-      "create user #{name}"
+      if self[:password]
+        "create user #{name} identified by #{self[:password]}"
+      else
+        "create user #{name}"
+      end
     end
 
     on_modify do
