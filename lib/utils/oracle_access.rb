@@ -12,6 +12,8 @@ end
 module Utils
 	module OracleAccess
 
+		ORATAB = "/etc/oratab"
+
 		def self.included(parent)
 			parent.extend(OracleAccess)
 		end
@@ -36,7 +38,8 @@ module Utils
 
 		def oratab
 			values = []
-			File.open('/etc/oratab') do | oratab|
+			fail "/etc/oratab not found. Probably Oracle not installed" unless File.exists?(ORATAB)
+			File.open(ORATAB) do | oratab|
 				oratab.each_line do | line|
 					content = [:sid, :home, :start].zip(line.split(':'))
 					values << Hash[content] unless comment?(line)
