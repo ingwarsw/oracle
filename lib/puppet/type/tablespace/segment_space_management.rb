@@ -1,5 +1,5 @@
 newproperty(:segment_space_management) do
-  include SimpleResource
+  include EasyType
 
   desc "TODO: Give description"
   newvalues(:auto, :manual)

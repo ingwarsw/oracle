@@ -1,8 +1,8 @@
 newproperty(:user_id) do
-  include SimpleResource
+  include EasyType
 
-  include SimpleResource::Validators::Integer
-  include SimpleResource::Mungers::Integer
+  include EasyType::Validators::Integer
+  include EasyType::Mungers::Integer
 
   desc "The user id"
 

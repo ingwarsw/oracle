@@ -1,5 +1,5 @@
 newparam(:password) do
-  include SimpleResource
+  include EasyType
 
   desc "The user's password"
   defaultto 'password'

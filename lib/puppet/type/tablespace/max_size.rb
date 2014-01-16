@@ -1,7 +1,7 @@
 # TODO: Check values
 newproperty(:max_size) do
-  include SimpleResource
-  include SimpleResource::Mungers::Size
+  include EasyType
+  include EasyType::Mungers::Size
 
   desc "maximum size for autoextending"
 

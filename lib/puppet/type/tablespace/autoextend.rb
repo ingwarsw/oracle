@@ -1,5 +1,5 @@
 newproperty(:autoextend) do
-  include SimpleResource
+  include EasyType
 
   desc "Enable autoextension for the tablespace"
   newvalues(:on, :off)

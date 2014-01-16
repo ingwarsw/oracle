@@ -1,6 +1,6 @@
 newparam(:name) do
-  include SimpleResource
-  include SimpleResource::Validators::Name
+  include EasyType
+  include EasyType::Validators::Name
   desc "The role name "
 
   isnamevar

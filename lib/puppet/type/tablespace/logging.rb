@@ -1,5 +1,5 @@
 newproperty(:logging) do
-  include SimpleResource
+  include EasyType
 
   desc "TODO: Add description"
   newvalues(:yes, :no)

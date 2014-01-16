@@ -1,5 +1,5 @@
 newproperty(:grants, :array_matching => :all) do
-  include SimpleResource
+  include EasyType
   include Utils::OracleAccess
 
   desc "grants for this user"

@@ -1,8 +1,8 @@
 require 'utils/oracle_access'
-require 'simple_resource'
+require 'easy_type'
 
 Puppet::Type.type(:tablespace).provide(:simple) do
-	include SimpleResource::Provider
+	include EasyType::Provider
 	include Utils::OracleAccess
 
   desc "Manage an Oracle Tablespace in an Oracle Database via regular SQL"

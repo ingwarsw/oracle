@@ -1,4 +1,4 @@
-require 'simple_resource'
+require 'easy_type'
 require 'utils/oracle_access'
 
 module Puppet
@@ -7,7 +7,7 @@ module Puppet
   # with the SqlResource
   #
   newtype(:role) do
-    include SimpleResource
+    include EasyType
     include ::Utils::OracleAccess
 
     desc "This resource allows you to manage a role in an Oracle database."

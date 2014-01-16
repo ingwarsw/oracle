@@ -1,5 +1,5 @@
 newproperty(:bigfile) do
-  include SimpleResource
+  include EasyType
 
   desc "the type of datafile used for the tablespace"
   newvalues(:yes, :no)

@@ -1,6 +1,6 @@
 newproperty(:size) do
-  include SimpleResource
-  include SimpleResource::Mungers::Size
+  include EasyType
+  include EasyType::Mungers::Size
 
   desc "The size of the tablespace"
   defaultto "500M"

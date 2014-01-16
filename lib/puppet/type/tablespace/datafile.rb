@@ -1,5 +1,5 @@
 newproperty(:datafile) do
-  include SimpleResource
+  include EasyType
   desc "The name of the datafile"
 
   on_apply do

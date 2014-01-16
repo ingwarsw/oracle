@@ -1,7 +1,7 @@
 newproperty(:default_tablespace) do
-  include SimpleResource
-  include SimpleResource::Validators::Name
-  include SimpleResource::Mungers::Upcase
+  include EasyType
+  include EasyType::Validators::Name
+  include EasyType::Mungers::Upcase
 
   desc "The user's default tablespace"
   defaultto 'USERS'

@@ -1,5 +1,5 @@
 newproperty(:extent_management) do
-  include SimpleResource
+  include EasyType
 
   desc "TODO: Give description"
   newvalues(:local, :dictionary)
