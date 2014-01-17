@@ -1,13 +1,15 @@
-# TODO: Check values
-# newproperty(:next) do
-#   include ::Utils::Mungers::Size
-#   desc "Size of the next autoextent"
+newproperty(:next) do
+  include EasyType
+  include EasyType::Mungers::Size
 
-#   to_translate_to_resource do | raw_resource|
-#     raw_resource['NEXT_EXTEN'].to_i
-#   end
+	desc "Size of the next autoextent"
 
-#   on_apply do
-#     "next #{resource[:next]}"
-#   end
-# end
+  to_translate_to_resource do | raw_resource|
+    raw_resource.column_data('INCREMENT_BY').to_i
+  end
+
+  on_apply do
+    "next #{resource[:next]}"
+  end
+
+end
