@@ -14,7 +14,7 @@ newproperty(:size) do
   end
 
   to_translate_to_resource do | raw_resource|
-    raw_resource['BYTES'].to_i
+    raw_resource.column_data('BYTES').to_i
   end
 
 end

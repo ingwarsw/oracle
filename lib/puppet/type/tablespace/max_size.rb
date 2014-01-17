@@ -7,7 +7,7 @@ newproperty(:max_size) do
 
   # TODO: Check why it doesn't retirn the right values
   to_translate_to_resource do | raw_resource|
-    raw_resource['MAX_SIZE'].to_i
+    raw_resource.column_data('MAX_SIZE').to_f.to_i
   end
 
   on_apply do

@@ -5,7 +5,7 @@ newproperty(:extent_management) do
   newvalues(:local, :dictionary)
 
   to_translate_to_resource do | raw_resource|
-    raw_resource['EXTENT_MAN'].downcase.to_sym
+    raw_resource.column_data('EXTENT_MAN').downcase.to_sym
   end
 
   on_apply do

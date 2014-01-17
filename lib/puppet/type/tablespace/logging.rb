@@ -6,7 +6,7 @@ newproperty(:logging) do
 
 
   to_translate_to_resource do | raw_resource|
-    case raw_resource['LOGGING']
+    case raw_resource.column_data('LOGGING')
     when 'LOGGING' then :yes
     when 'NOLOGGING' then :no
     else

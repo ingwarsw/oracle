@@ -12,6 +12,14 @@ end
 module Utils
 	module OracleAccess
 
+		class QueryResults < Hash
+			def column_data(column_name)
+				fetch(column_name) do 
+					fail "Column #{column_name} not found in results. Results contain #{keys.join(',')}"
+				end
+			end
+		end
+
 		ORATAB = "/etc/oratab"
 
 		def self.included(parent)
@@ -33,6 +41,7 @@ module Utils
 			csv_string = execute_sql(command, :sid => sid)
 			convert_csv_data_to_hash(csv_string)
 		end
+
 
 		private
 
@@ -91,7 +100,7 @@ module Utils
 					#do nothing
 				else
 					values = headers.zip(columnized)
-					data << Hash[values]
+					data << QueryResults[values]
 				end
 			end
 			data

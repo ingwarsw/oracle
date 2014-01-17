@@ -7,7 +7,7 @@ newparam(:name) do
   isnamevar
 
   to_translate_to_resource do | raw_resource|
-    raw_resource['TABLESPACE_NAME']
+    raw_resource.column_data('TABLESPACE_NAME')
   end
 
 end

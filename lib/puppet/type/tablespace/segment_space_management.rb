@@ -5,7 +5,7 @@ newproperty(:segment_space_management) do
   newvalues(:auto, :manual)
 
   to_translate_to_resource do | raw_resource|
-    raw_resource['SEGMEN'].downcase.to_sym
+    raw_resource.column_data('SEGMEN').downcase.to_sym
   end
 
   on_apply do

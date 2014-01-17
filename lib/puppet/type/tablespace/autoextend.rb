@@ -5,7 +5,7 @@ newproperty(:autoextend) do
   newvalues(:on, :off)
 
   to_translate_to_resource do | raw_resource|
-    case raw_resource['AUT']
+    case raw_resource.column_data('AUT')
     when 'YES' then :on
     when 'NO' then :no
     else
