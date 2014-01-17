@@ -25,7 +25,23 @@ module Puppet
     end
 
     to_get_raw_resources do
-      sql "select * from dba_tablespaces t, dba_data_files f where t.TABLESPACE_NAME = f.TABLESPACE_NAME"
+      sql %q{select 
+        t.tablespace_name,
+        logging,
+        extent_management,
+        segment_space_management,
+        bigfile,
+        file_name,
+        increment_by,
+        autoextensible,
+        bytes,
+        to_char(maxbytes, '9999999999999999999') "MAX_SIZE"
+      from 
+        dba_tablespaces t, 
+        dba_data_files f 
+      where
+        t.tablespace_name = f.tablespace_name
+      }
     end
 
     parameter :name
