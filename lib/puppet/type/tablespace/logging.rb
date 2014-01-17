@@ -17,6 +17,8 @@ newproperty(:logging) do
   on_apply do
     if resource[:logging] == :yes
       "logging"
+    else
+      "nologging"
     end
   end
 

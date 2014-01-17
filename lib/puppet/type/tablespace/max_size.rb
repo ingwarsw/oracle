@@ -11,8 +11,7 @@ newproperty(:max_size) do
   end
 
   on_apply do
-  	# TODO: include :next for toching. 
-  	"#{touch([:autoextend]).join(' ')} maxsize #{should}"
+  	"maxsize #{should}"
   end
 
 end
