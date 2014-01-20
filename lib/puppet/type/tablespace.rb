@@ -47,11 +47,15 @@ module Puppet
     parameter :name
     parameter :database
     property :logging
-    property :datafile
-    property :size
-    property :autoextend
-    property :next
-    property :max_size
+    group(:datafile_size) do
+      property :datafile
+      property :size
+    end
+    group(:autoextend_info) do
+      property :autoextend
+      property :next
+      property :max_size
+    end
     property :extent_management
     property :segment_space_management
     property :bigfile
