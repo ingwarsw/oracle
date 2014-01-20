@@ -7,7 +7,7 @@ newproperty(:default_tablespace) do
   defaultto 'USERS'
 
   to_translate_to_resource do | raw_resource|
-    raw_resource['DEFAULT_TABLESPACE'].upcase
+    raw_resource.column_data('DEFAULT_TABLESPACE').upcase
   end
 
   on_apply do

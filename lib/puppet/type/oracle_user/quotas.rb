@@ -5,7 +5,7 @@ newproperty(:quotas) do
   desc "quota's for this user"
 
   to_translate_to_resource do | raw_resource|
-    username = raw_resource['USERNAME'].upcase
+    username = raw_resource.column_data('USERNAME').upcase
     @raw_quotas ||= sql "select * from dba_ts_quotas"
     quota_for(username)
   end

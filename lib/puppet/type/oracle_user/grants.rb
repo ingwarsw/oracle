@@ -6,7 +6,7 @@ newproperty(:grants, :array_matching => :all) do
 
   to_translate_to_resource do | raw_resource|
     @all_rights ||= privileges + granted_roles
-    user = raw_resource['USERNAME'].upcase
+    user = raw_resource.column_data('USERNAME').upcase
     rights_for_user(user)
   end
 
@@ -26,6 +26,9 @@ newproperty(:grants, :array_matching => :all) do
   end
 
   on_apply do | command_builder |
+    if command_builder.line == "alter user #{resource[:name]}"
+      command_builder.line = ""
+    end
     command_builder.after(revoke(revoked_rights))
     command_builder.after(grants(granted_rights))
     nil

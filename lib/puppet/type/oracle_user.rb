@@ -44,8 +44,8 @@ module Puppet
     property  :password
     property  :default_tablespace
     property  :temporary_tablespace
-    property  :grants
     property  :quotas
+    property  :grants
 
   end
 end

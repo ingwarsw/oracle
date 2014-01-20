@@ -7,7 +7,7 @@ newproperty(:temporary_tablespace) do
   defaultto 'TEMP'
 
   to_translate_to_resource do | raw_resource|
-    raw_resource['TEMPORARY_TABLESPACE'].upcase
+    raw_resource.column_data('TEMPORARY_TABLESPACE').upcase
   end
 
 

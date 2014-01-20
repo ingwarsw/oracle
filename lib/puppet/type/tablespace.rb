@@ -32,7 +32,8 @@ module Puppet
         segment_space_management,
         bigfile,
         file_name,
-        increment_by,
+        to_char(increment_by, '9999999999999999999') "INCREMENT_BY",
+        to_char(block_size, '9999999999999999999') "BLOCK_SIZE",
         autoextensible,
         bytes,
         to_char(maxbytes, '9999999999999999999') "MAX_SIZE"
@@ -47,10 +48,8 @@ module Puppet
     parameter :name
     parameter :database
     property :logging
-    group(:datafile_size) do
-      property :datafile
-      property :size
-    end
+    property :datafile
+    property :size
     group(:autoextend_info) do
       property :autoextend
       property :next

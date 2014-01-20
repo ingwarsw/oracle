@@ -7,7 +7,7 @@ newproperty(:user_id) do
   desc "The user id"
 
   to_translate_to_resource do | raw_resource|
-    raw_resource['USER_ID'].to_i
+    raw_resource.column_data('USER_ID').to_i
   end
 
   on_apply do

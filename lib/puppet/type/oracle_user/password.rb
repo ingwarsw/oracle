@@ -5,7 +5,7 @@ newparam(:password) do
   defaultto 'password'
 
   to_translate_to_resource do | raw_resource|
-    raw_resource['PASSWORD']
+    raw_resource.column_data('PASSWORD')
   end
 
   on_apply do
