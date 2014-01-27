@@ -12,14 +12,6 @@ end
 module Utils
 	module OracleAccess
 
-		class QueryResults < Hash
-			def column_data(column_name)
-				fetch(column_name) do 
-					fail "Column #{column_name} not found in results. Results contain #{keys.join(',')}"
-				end
-			end
-		end
-
 		ORATAB = "/etc/oratab"
 
 		def self.included(parent)
@@ -63,53 +55,12 @@ module Utils
 			outFile.close
 			FileUtils.chmod(0777, outFile.path)
 			tmpFile = Tempfile.new([ 'sql', '.sql' ])
-			tmpFile.puts("connect / as sysdba")
-			tmpFile.puts("SET PAGES 0 EMB ON NEWP NONE")
-			tmpFile.puts("SET NEWPAGE 0")
-			tmpFile.puts("SET SPACE 0")
-			tmpFile.puts("SET LINESIZE 32767")
-			tmpFile.puts("SET ECHO OFF")
-			tmpFile.puts("SET FEEDBACK OFF")
-			tmpFile.puts("SET VERIFY OFF")
-			tmpFile.puts("WHENEVER SQLERROR EXIT 2")
-			tmpFile.puts("SET HEADING ON")
-			tmpFile.puts("SET MARKUP HTML OFF SPOOL OFF")
-			tmpFile.puts("SET COLSEP ','")
-			tmpFile.puts("SPOOL #{outFile.path}")
-			tmpFile.puts(command)
-			tmpFile.puts('/')
-			tmpFile.puts("spool off")
-			tmpFile.puts('exit')
+			tmpFile.puts template('execute.sql', binding)
 			tmpFile.close
 			FileUtils.chmod(0555, tmpFile.path)
 			output = `su - oracle -c 'export ORACLE_SID=#{db_sid};export ORAENV_ASK=NO;. oraenv;sqlplus -s /nolog @#{tmpFile.path}'`
 			raise ArgumentError, "Error executing puppet code, #{output}" if $? != 0
 			File.read(outFile.path)
 		end
-
-		def convert_csv_data_to_hash(csv_data)
-			data = []
-			headers = []
-
-			csv_data.split("\n").each do | row |
-				columnized = row.split(',')
-				columnized.map!{|column| column.strip}
-				if headers.empty?
-					headers = columnized
-				elsif row.include?('----')
-					#do nothing
-				else
-					values = headers.zip(columnized)
-					data << QueryResults[values]
-				end
-			end
-			data
-		end
-
-		def comment?(line)
-			line.start_with?('#') || line.start_with?("\n")
-		end
-
-
 	end
 end

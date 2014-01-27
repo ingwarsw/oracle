@@ -4,7 +4,7 @@ require 'utils/oracle_access'
 module Puppet
   newtype(:tablespace) do
     include EasyType
-    include Utils::OracleAccess
+    include ::Utils::OracleAccess
 
     desc "This resource allows you to manage an Oracle tablespace."
 

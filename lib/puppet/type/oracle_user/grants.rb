@@ -1,6 +1,6 @@
 newproperty(:grants, :array_matching => :all) do
   include EasyType
-  include Utils::OracleAccess
+  include ::Utils::OracleAccess
   include EasyType::Mungers::Upcase
 
   desc "grants for this user"

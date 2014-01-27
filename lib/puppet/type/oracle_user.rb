@@ -8,7 +8,7 @@ module Puppet
   #
   newtype(:oracle_user) do
     include EasyType
-    include Utils::OracleAccess
+    include ::Utils::OracleAccess
 
     desc %q{
       This resource allows you to manage a user in an Oracle database.

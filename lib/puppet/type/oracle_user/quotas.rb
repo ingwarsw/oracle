@@ -1,6 +1,6 @@
 newproperty(:quotas) do
   include EasyType
-  include Utils::OracleAccess
+  include ::Utils::OracleAccess
 
   desc "quota's for this user"
 
