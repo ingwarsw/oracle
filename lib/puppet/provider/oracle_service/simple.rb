@@ -3,7 +3,7 @@ require 'easy_type'
 
 Puppet::Type.type(:oracle_service).provide(:simple) do
 	include EasyType::Provider
-	include Utils::OracleAccess
+	include ::Utils::OracleAccess
 
   desc "Manage Oracle services via regular SQL"
 
