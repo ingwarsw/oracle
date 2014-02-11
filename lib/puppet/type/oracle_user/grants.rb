@@ -30,8 +30,8 @@ newproperty(:grants, :array_matching => :all) do
     if command_builder.line == "alter user #{resource[:name]}"
       command_builder.line = ""
     end
-    command_builder.after(revoke(revoked_rights))
-    command_builder.after(grants(granted_rights))
+    command_builder.after(revoke(revoked_rights)) unless revoked_rights.empty?
+    command_builder.after(grants(granted_rights)) unless granted_rights.empty?
     nil
   end
 
