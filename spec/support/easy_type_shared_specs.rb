@@ -20,7 +20,7 @@ shared_examples "an easy_type attribute" do |test_attributes|
 
 
   let(:attribute_class) {  @class.attrclass(attribute_name) }
-  let(:attribute) {@resource.property(attribute_name)}
+  let(:attribute) { @resource.property(attribute_name) || @resource.parameter(attribute_name)}
 
 
   describe attribute_name do
@@ -47,7 +47,7 @@ shared_examples "an easy_type attribute" do |test_attributes|
       context "on applying the resource" do
 
         before do
-          @resource[attribute_name] = test_value_string
+          @resource[attribute_name] = test_value
         end
 
         it "returns #{apply_text}" do
