@@ -46,10 +46,9 @@ module Puppet
     end
 
     parameter :name
-    parameter :database
-    property :logging
-    property :datafile
-    property :size
+    property  :logging
+    property  :datafile
+    property  :size
     group(:autoextend_info) do
       property :autoextend
       property :next
