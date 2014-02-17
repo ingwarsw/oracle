@@ -10,6 +10,7 @@ group :test do
 end
 
 group :development do
+  gem 'debugger'
   gem "travis"
   gem "travis-lint"
   gem "beaker"
