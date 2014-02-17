@@ -20,7 +20,6 @@ module Puppet
     end
 
     on_create do
-      name = to_resource[:name]
       new_services = current_services << name
       set_services_command(new_services)
     end
@@ -30,7 +29,6 @@ module Puppet
     end
 
     on_destroy do
-      name = to_resource[:name]
       new_services = current_services.delete_if {|e| e == name }
       set_services_command(new_services)
     end
