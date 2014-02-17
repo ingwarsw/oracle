@@ -25,20 +25,22 @@ shared_examples "an easy_type attribute" do |test_attributes|
 
   describe attribute_name do
 
-    context "when geting data from the system" do
+    if result_identifier
+      context "when geting data from the system" do
 
-      it "should raise an error when #{result_identifier} not found in raw_results" do
-        expect{attribute_class.translate_to_resource(invalid_raw_resource)}.to raise_error(RuntimeError)
+        it "should raise an error when #{result_identifier} not found in raw_results" do
+          expect{attribute_class.translate_to_resource(invalid_raw_resource)}.to raise_error(RuntimeError)
+        end
+
+        it "should pick its value from element #{result_identifier}"  do
+          expect(attribute_class.translate_to_resource(raw_resource)).to eq test_value
+        end
+
+        it "should translate element #{raw_value} to #{test_value}"  do
+          expect(attribute_class.translate_to_resource(raw_resource)).to eq test_value
+        end
+
       end
-
-      it "should pick its value from element #{result_identifier}"  do
-        expect(attribute_class.translate_to_resource(raw_resource)).to eq test_value
-      end
-
-      it "should translate element #{raw_value} to #{test_value}"  do
-        expect(attribute_class.translate_to_resource(raw_resource)).to eq test_value
-      end
-
     end
 
     if apply_text

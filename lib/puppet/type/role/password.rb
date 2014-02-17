@@ -7,7 +7,7 @@ newproperty(:password) do
   end
 
  on_apply do
-    "identified by #{self[:password]}"
+    "identified by #{value}"
   end
 
 end
