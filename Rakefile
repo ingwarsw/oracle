@@ -9,6 +9,17 @@ begin
 rescue LoadError
 end
 
+# Set prepend lib's from all modules to current path
+current_path = Pathname(__FILE__).parent
+module_path = current_path + 'modules'
+module_path.children.each  do | dir |
+  lib_path = dir + 'lib'
+  $:.unshift(lib_path.to_s)
+end
+lib_path = current_path + 'lib'
+$:.unshift(lib_path.to_s)
+
+
 PuppetLint.configuration.send("disable_80chars")
 PuppetLint.configuration.log_format = "%{path}:%{linenumber}:%{check}:%{KIND}:%{message}"
 PuppetLint.configuration.fail_on_warnings = true

@@ -12,6 +12,8 @@ end
 
 group :development do
   gem 'debugger'
+  gem 'pry'
+  gem 'pry-debugger'
   gem "travis"
   gem "travis-lint"
   gem "beaker"
