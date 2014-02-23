@@ -7,9 +7,11 @@ group :test do
   gem "rspec-puppet", :git => 'https://github.com/rodjek/rspec-puppet.git'
   gem "puppet-syntax"
   gem "puppetlabs_spec_helper"
+  gem 'librarian-puppet'
 end
 
 group :development do
+  gem 'librarian-puppet'
   gem 'debugger'
   gem "travis"
   gem "travis-lint"

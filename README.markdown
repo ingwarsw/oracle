@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hajee/oracle.png?branch=master)](https://travis-ci.org/hajee/oracle)
+
 ####Table of Contents
 
 1. [Overview](#overview)
@@ -20,9 +22,12 @@ This module contains a couple of Puppet custom types to manage 'stuff' in an Ora
 
 ##Module Description
 
-If applicable, this section should have a brief description of the technology the module integrates with and what that integration enables. This section should answer the questions: "What does this module *do*?" and "Why would I use it?"
+This module contains custom types that can help you manage DBA objects in an Oracle database. It runs **after** the database is installed. IT DOESN'T INSTALL the Oracle database software. With this module, you can setup a database to receive an application. You can:
 
-If your module has a range of functionality (installation, configuration, management, etc.) this is the time to mention it.
+* create a tablespace
+* create a user with the required grants and quota's
+* create one or more roles
+* create one or more services 
 
 ##Setup
 
