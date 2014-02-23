@@ -11,7 +11,6 @@ group :test do
 end
 
 group :development do
-  gem 'librarian-puppet'
   gem 'debugger'
   gem "travis"
   gem "travis-lint"
