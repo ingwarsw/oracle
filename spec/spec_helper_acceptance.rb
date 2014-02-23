@@ -18,9 +18,33 @@ RSpec.configure do |c|
     # Install module and dependencies
 
     puppet_module_install(:source => proj_root, :module_name => 'oracle')
+    oracle_base_install = <<-EOS
+
+puppetDownloadMntPoint = "puppet:///modules/oradb/"
+
+oradb::installdb{ '12.1.0.1_Linux-x86-64':
+  version                => '12.1.0.1',
+  file                   => 'linuxamd64_12c_database',
+  databaseType           => 'EE',
+  oracleBase             => '/oracle',
+  oracleHome             => '/oracle/product/12.1/db',
+  createUser             => true,
+  user                   => 'oracle',
+  group                  => 'dba',
+  downloadDir            => '/data/install',
+  zipExtract             => true,
+  puppetDownloadMntPoint => $puppetDownloadMntPoint,
+}
+    EOS
+    apply_manifest(pp,:catch_failures => true)
+
+
     hosts.each do |host|
-      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
-      on host, puppet('module', 'install', 'hajee-easy_type'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs/stdlib'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'biemond/oradb'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'hajee/easy_type'), { :acceptable_exit_codes => [0,1] }
+
+
     end
   end
 end
