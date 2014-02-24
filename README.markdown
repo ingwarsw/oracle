@@ -179,3 +179,7 @@ And run the tests from the root of the source code:
 
 We are currently working on getting the acceptance test running as well.
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hajee/oracle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
