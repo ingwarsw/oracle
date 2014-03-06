@@ -18,7 +18,7 @@
 
 ##Overview
 
-This module contains a couple of Puppet custom types to manage 'stuff' in an Oracle database. At this point in time we support manage tablespacses, oracle users, grants, roles and services.
+This module contains a couple of Puppet custom types to manage 'stuff' in an Oracle database. At this point in time we support manage tablespacses, oracle users, grants, roles and services. To learn more, check [the blog post](http://hajee.github.io/2014/02/23/using-puppet-to-manage-oracle/)
 
 ##Module Description
 
