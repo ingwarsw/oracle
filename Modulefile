@@ -8,4 +8,4 @@ description 'the custom types needed to manage the basic setup of an Oracle data
 project_page 'http:/www.github.com/hajee/oracle'
 
 ## Add dependencies, if any:
-dependency 'hajee/easy_type', '>= 0.5.2'
+dependency 'hajee/easy_type', '>= 0.5.8'
