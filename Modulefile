@@ -1,5 +1,5 @@
 name    'hajee-oracle'
-version '0.2.1'
+version '0.2.2'
 source 'http:/www.github.com/hajee/oracle'
 author 'Bert Hajee'
 license 'Apache License, Version 2.0'
