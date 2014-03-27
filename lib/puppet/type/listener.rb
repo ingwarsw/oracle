@@ -9,7 +9,7 @@ module Puppet
         provider.stop
       end
 
-      newvalue(:running, :event => :service_started, :invalidate_refreshes => true) do
+      newvalue(:running, :event => :service_started) do
         provider.start
       end
 
